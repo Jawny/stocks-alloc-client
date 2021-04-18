@@ -1,0 +1,12 @@
+@import "antd/dist/antd.css";
+
+.stock-picker-form {
+  &-container {
+    display: flex;
+    flex-direction: row;
+  }
+  &-ticker-input {
+  }
+  &-shares-input {
+  }
+}

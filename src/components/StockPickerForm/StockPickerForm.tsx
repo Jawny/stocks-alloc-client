@@ -1,9 +1,11 @@
 import React from "react";
 import { Input, Form, InputNumber, Button } from "antd";
-import { Spinner } from "../Spinner";
+import { Spinner } from "@components/Spinner";
+import { StocksContext } from "@contexts";
 import "./StockPickerForm.scss";
 
 const StockPickerForm = () => {
+  const { stocks, setStocks } = React.useContext(StocksContext);
   const [loading, setLoading] = React.useState(false);
 
   const initialValues = { shares: 0 };
@@ -46,7 +48,7 @@ const StockPickerForm = () => {
           },
         ]}
       >
-        <InputNumber min={0} defaultValue={0} />
+        <InputNumber min={0} />
       </Form.Item>
       <Form.Item className="stock-picker-form-submit">
         <Button type="primary" htmlType="submit" disabled={loading}>

@@ -1,13 +1,16 @@
 import React from "react";
 import { StockPickerForm } from "@components";
+import { StocksProvider } from "@providers";
 import "./App.scss";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <StockPickerForm />
+      <StocksProvider>
+        <StockPickerForm />
+      </StocksProvider>
     </div>
   );
-}
+};
 
 export default App;

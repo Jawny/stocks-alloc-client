@@ -7,6 +7,10 @@
       "@api/*": ["src/api/*"],
       "@components": ["src/components"],
       "@components/*": ["src/components/*"],
+      "@contexts": ["src/contexts"],
+      "@contexts/*": ["src/contexts/*"],
+      "@providers": ["src/providers"],
+      "@providers/*": ["src/providers/*"],
       "@utils": ["src/utils"],
       "@utils/*": ["src/utils/*"]
     }

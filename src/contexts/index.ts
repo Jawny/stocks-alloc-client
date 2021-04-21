@@ -1,7 +1,13 @@
 import React from "react";
 
+interface IStock {
+  ticker: string;
+  shares: number;
+  [key: string]: any;
+}
+
 interface IStocksContext {
-  stocks: Array<any>;
+  stocks: Array<IStock>;
   setStocks: React.Dispatch<React.SetStateAction<never[]>>;
 }
 

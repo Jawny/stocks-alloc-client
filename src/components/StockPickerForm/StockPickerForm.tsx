@@ -1,5 +1,6 @@
 import React from "react";
 import { Input, Form, InputNumber, Button } from "antd";
+import { getQuoteSummary } from "@api";
 import { Spinner } from "@components/Spinner";
 import { StocksContext } from "@contexts";
 import "./StockPickerForm.scss";
@@ -10,8 +11,13 @@ const StockPickerForm = () => {
 
   const initialValues = { shares: 0 };
 
-  const handleSubmit = (values: { shares: number; ticker: string }) => {
+  const handleSubmit = async (values: { shares: number; ticker: string }) => {
     setLoading(true);
+
+    const { ticker } = values;
+    const data = { ticker, modules: ["topHoldings"] };
+    const topHoldingsData = await getQuoteSummary(data);
+    debugger;
     // try catch api call
     // return data to parent component to store
     // setLoading false

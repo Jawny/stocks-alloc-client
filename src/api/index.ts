@@ -1,15 +1,15 @@
 import axios from "axios";
-import { getFormData } from "@utils";
 import { getQuoteSummaryProps } from "./types";
 
 export const getQuoteSummary = async (data: getQuoteSummaryProps) => {
-  const formData = getFormData(data);
+  const { ticker, modules } = data;
+
   const response = await axios.get(
-    `${process.env.REACT_APP_API_DOMAIN}/api/quote-summary`,
+    `${process.env.REACT_APP_API_DOMAIN_DEV}/api/quote-summary`,
     {
-      params: formData,
+      params: { ticker, modules },
     }
   );
 
-  return response;
+  return response.data;
 };

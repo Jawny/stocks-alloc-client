@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IStock {
+export interface IStock {
   ticker: string;
   shares: number;
   [key: string]: any;
@@ -8,7 +8,7 @@ interface IStock {
 
 interface IStocksContext {
   stocks: Array<IStock>;
-  setStocks: React.Dispatch<React.SetStateAction<never[]>>;
+  setStocks: React.Dispatch<React.SetStateAction<IStock[]>>;
 }
 
 const StocksContextInitialState = { stocks: [], setStocks: () => {} };

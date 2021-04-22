@@ -14,13 +14,16 @@ const StockPickerForm = () => {
   const handleSubmit = async (values: { shares: number; ticker: string }) => {
     setLoading(true);
 
-    const { ticker } = values;
-    const data = { ticker, modules: ["topHoldings"] };
-    const topHoldingsData = await getQuoteSummary(data);
-    debugger;
-    // try catch api call
-    // return data to parent component to store
-    // setLoading false
+    const { ticker, shares } = values;
+    const quoteSummary = await getQuoteSummary({
+      ticker,
+      modules: ["topHoldings"],
+    });
+    const { topHoldings } = quoteSummary;
+    const newStockEntry = { ticker, shares, topHoldings };
+
+    setStocks([...stocks, newStockEntry]);
+    setLoading(false);
   };
 
   return (

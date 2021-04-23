@@ -1,27 +1,29 @@
 import React from "react";
 import { Table } from "antd";
-import produce from "immer";
+import { set as _set } from "lodash";
+import { StocksContext } from "@contexts";
 import StocksDisplaySchema from "./schema";
 import "./StocksDisplay.scss";
 
 const StocksDisplay = () => {
-  const getData = () => {
-    return produce(fields);
-  };
+  const { stocks } = React.useContext(StocksContext);
+  const { columns, data } = StocksDisplaySchema;
 
-  const getFields = () => {
-    return produce(fields, (draft) => {
-      const firstField = draft[0];
-      _set(firstField, "label", title);
-      draft.shift();
-      draft.unshift(firstField);
+  React.useMemo(() => {
+    const formattedStocksData = stocks.reverse().map((stock, index) => {
+      const { ticker, shares } = stock;
+
+      return { key: index, stock: ticker, shares };
     });
-  };
+
+    _set(StocksDisplaySchema, "data", formattedStocksData);
+  }, [stocks]);
+
   return (
     <Table
       className="stock-display-table"
-      columns={StocksDisplaySchema.columns}
-      dataSource={}
+      columns={columns}
+      dataSource={data}
     />
   );
 };

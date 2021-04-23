@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Form, InputNumber, Button } from "antd";
+import { Input, Form, InputNumber, Button, message } from "antd";
 import { getQuoteSummary } from "@api";
 import { Spinner } from "@components/Spinner";
 import { StocksContext } from "@contexts";
@@ -13,17 +13,21 @@ const StockPickerForm = () => {
 
   const handleSubmit = async (values: { shares: number; ticker: string }) => {
     setLoading(true);
+    try {
+      const { ticker, shares } = values;
+      const quoteSummary = await getQuoteSummary({
+        ticker,
+        modules: ["topHoldings"],
+      });
+      const { topHoldings } = quoteSummary;
+      const newStockEntry = { ticker, shares, topHoldings };
 
-    const { ticker, shares } = values;
-    const quoteSummary = await getQuoteSummary({
-      ticker,
-      modules: ["topHoldings"],
-    });
-    const { topHoldings } = quoteSummary;
-    const newStockEntry = { ticker, shares, topHoldings };
-
-    setStocks([...stocks, newStockEntry]);
-    setLoading(false);
+      setStocks([...stocks, newStockEntry]);
+    } catch {
+      message.error("Failed to find stock.", 1.5);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

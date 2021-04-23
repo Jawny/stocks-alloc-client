@@ -27,7 +27,7 @@ const StockPickerForm = () => {
         quoteType: _get(quoteSummary, "price.quoteType"),
         topHoldings: _get(quoteSummary, "topHoldings"),
       };
-      debugger;
+
       setStocks([...stocks, newStockEntry]);
     } catch {
       message.error("Failed to find stock.", 1.5);

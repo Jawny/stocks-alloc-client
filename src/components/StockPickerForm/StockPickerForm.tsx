@@ -1,5 +1,6 @@
 import React from "react";
 import { Input, Form, InputNumber, Button, message } from "antd";
+import { get as _get, set as _set } from "lodash";
 import { getQuoteSummary } from "@api";
 import { Spinner } from "@components/Spinner";
 import { StocksContext } from "@contexts";
@@ -17,10 +18,15 @@ const StockPickerForm = () => {
       const { ticker, shares } = values;
       const quoteSummary = await getQuoteSummary({
         ticker,
-        modules: ["topHoldings"],
+        modules: ["price", "topHoldings"],
       });
-      const { topHoldings } = quoteSummary;
-      const newStockEntry = { ticker, shares, topHoldings };
+
+      const newStockEntry = {
+        ticker,
+        shares,
+        quoteType: _get(quoteSummary, "price.quoteType"),
+        topHoldings: _get(quoteSummary, "topHoldings"),
+      };
 
       setStocks([...stocks, newStockEntry]);
     } catch {

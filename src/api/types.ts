@@ -1,4 +1,4 @@
-export interface getQuoteSummaryProps {
+export interface IGetQuoteSummaryProps {
   ticker: string;
   modules: Array<string>;
 }

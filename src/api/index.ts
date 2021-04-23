@@ -1,7 +1,7 @@
 import axios from "axios";
-import { getQuoteSummaryProps } from "./types";
+import { IGetQuoteSummaryProps } from "./types";
 
-export const getQuoteSummary = async (data: getQuoteSummaryProps) => {
+export const getQuoteSummary = async (data: IGetQuoteSummaryProps) => {
   const { ticker, modules } = data;
 
   const response = await axios.get(

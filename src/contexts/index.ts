@@ -3,7 +3,8 @@ import React from "react";
 export interface IStock {
   ticker: string;
   shares: number;
-  topHoldings: Record<string, string | object | number>;
+  quoteType: string;
+  topHoldings?: Record<string, string | object | number> | null;
 }
 
 interface IStocksContext {

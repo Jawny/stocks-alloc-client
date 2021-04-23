@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, Form, InputNumber, Button, message } from "antd";
-import { get as _get, set as _set } from "lodash";
+import { get as _get } from "lodash";
 import { getQuoteSummary } from "@api";
 import { Spinner } from "@components/Spinner";
 import { StocksContext } from "@contexts";
@@ -27,7 +27,7 @@ const StockPickerForm = () => {
         quoteType: _get(quoteSummary, "price.quoteType"),
         topHoldings: _get(quoteSummary, "topHoldings"),
       };
-
+      debugger;
       setStocks([...stocks, newStockEntry]);
     } catch {
       message.error("Failed to find stock.", 1.5);

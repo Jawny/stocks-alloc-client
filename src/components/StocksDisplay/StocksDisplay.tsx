@@ -13,7 +13,7 @@ const StocksDisplay = () => {
     const formattedStocksData = stocks.reverse().map((stock, index) => {
       const { ticker, shares } = stock;
 
-      return { key: index, stock: ticker, shares };
+      return { key: index, stock: ticker.toUpperCase(), shares };
     });
 
     _set(StocksDisplaySchema, "data", formattedStocksData);

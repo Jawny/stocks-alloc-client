@@ -22,7 +22,7 @@ const StockPickerForm = () => {
       });
 
       const newStockEntry = {
-        ticker,
+        ticker: ticker.toUpperCase(),
         shares,
         quoteType: _get(quoteSummary, "price.quoteType"),
         topHoldings: _get(quoteSummary, "topHoldings"),

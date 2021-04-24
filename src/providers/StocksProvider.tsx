@@ -3,7 +3,11 @@ import { StocksContext, IStock } from "@contexts";
 
 const StocksContextProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [stocks, setStocks] = React.useState<IStock[]>([]);
-  // Important to prevent unnecessary re-renderings
+  /**
+   * Pass useState functionality to children.
+   * Memoized to avoid unnecessary re-rendering.
+   * @function
+   */
   const providerValue = React.useMemo(() => ({ stocks, setStocks }), [
     stocks,
     setStocks,

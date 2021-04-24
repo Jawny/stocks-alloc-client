@@ -16,6 +16,9 @@ const StocksDisplay = () => {
   const { stocks, setStocks } = React.useContext(StocksContext);
   const { columns, data } = StocksDisplaySchema;
 
+  /**
+   * Add Delete button to last column in columns array.
+   */
   _set(
     StocksDisplaySchema,
     `columns[${columns.length - 1}].render`,
@@ -24,6 +27,14 @@ const StocksDisplay = () => {
     )
   );
 
+  /**
+   * Delete stock from the stocks state
+   * @function
+   * @param {Record<string, string | number>} stock
+   * @param {number} stock.key - array index the stock is assigned in the stocks state
+   * @param {string} stock.stock - stock ticker symbol
+   * @param {number} stock.shares - number of shares held for stock
+   */
   const handleDelete = (stock: IDataSourceProps) => {
     setStocks(
       produce(stocks, (draft) => {
@@ -32,7 +43,16 @@ const StocksDisplay = () => {
     );
   };
 
+  /**
+   * Update the dataSource in Table
+   * @function
+   */
   React.useMemo(() => {
+    /**
+     * Map over stocks state and create an object with a key, stock ticker, and number of shares
+     * @function
+     * @returns {Record<string, number | string>[]}
+     */
     const formattedStocksData = _compact(
       stocks.map((stock, index) => {
         const ticker = _get(stock, "ticker");

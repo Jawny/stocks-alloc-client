@@ -11,7 +11,12 @@ const StockPickerForm = () => {
   const [loading, setLoading] = React.useState(false);
 
   const initialValues = { shares: 0 };
-
+  /**
+   * Makes api call to get price and topHoldings for a stock.
+   * Then add the stock to Stocks state.
+   * @function
+   * @param {Record<string, string | number>} values
+   */
   const handleSubmit = async (values: { shares: number; ticker: string }) => {
     setLoading(true);
     try {

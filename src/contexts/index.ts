@@ -1,16 +1,5 @@
 import React from "react";
-
-export interface IStock {
-  ticker: string;
-  shares: number;
-  quoteType: string;
-  topHoldings?: Record<string, string | object | number> | null;
-}
-
-interface IStocksContext {
-  stocks: Array<IStock>;
-  setStocks: React.Dispatch<React.SetStateAction<IStock[]>>;
-}
+import { IStocksContext } from "./types";
 
 const StocksContextInitialState = { stocks: [], setStocks: () => {} };
 

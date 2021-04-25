@@ -1,5 +1,6 @@
 import React from "react";
-import { StocksContext, IStock } from "@contexts";
+import { StocksContext } from "@contexts";
+import { IStock } from "@contexts/types";
 
 const StocksContextProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [stocks, setStocks] = React.useState<IStock[]>([]);

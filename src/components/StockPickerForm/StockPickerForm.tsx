@@ -4,6 +4,7 @@ import { get as _get } from "lodash";
 import { getQuoteSummary } from "@api";
 import { Spinner } from "@components/Spinner";
 import { StocksContext } from "@contexts";
+import { formatSectorWeights } from "@utils";
 import "./StockPickerForm.scss";
 
 const StockPickerForm = () => {
@@ -17,7 +18,7 @@ const StockPickerForm = () => {
    * @function
    * @param {Record<string, string | number>} values
    */
-  const handleSubmit = async (values: { shares: number; ticker: string }) => {
+  const handleAddStock = async (values: { shares: number; ticker: string }) => {
     setLoading(true);
     try {
       const { ticker, shares } = values;
@@ -41,11 +42,19 @@ const StockPickerForm = () => {
     }
   };
 
+  /**
+   * Run formatSectorWeights function to calculate the portfolio sectors weights
+   * @function
+   */
+  const handleSubmit = () => {
+    formatSectorWeights(stocks);
+  };
+
   return (
     <Form
       className="stock-picker-form-container"
       initialValues={initialValues}
-      onFinish={handleSubmit}
+      onFinish={handleAddStock}
     >
       <Form.Item
         className="stock-picker-form-ticker-input"
@@ -80,6 +89,7 @@ const StockPickerForm = () => {
         </Button>
       </Form.Item>
       {loading ? <Spinner /> : null}
+      <Button onClick={handleSubmit}>Submit</Button>
     </Form>
   );
 };

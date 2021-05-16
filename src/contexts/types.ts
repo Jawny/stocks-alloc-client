@@ -2,7 +2,7 @@ export interface IStock {
   ticker: string;
   shares: number;
   quoteType: string;
-  topHoldings?: Record<string, string | object | number> | null;
+  topHoldings?: Record<string, any> | null;
 }
 
 export interface IStocksContext {

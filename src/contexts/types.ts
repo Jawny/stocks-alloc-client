@@ -3,6 +3,7 @@ export interface IStock {
   shares: number;
   quoteType: string;
   topHoldings?: Record<string, any> | null;
+  price: number;
 }
 
 export interface IStocksContext {

@@ -32,6 +32,7 @@ const StockPickerForm = () => {
         shares,
         quoteType: _get(quoteSummary, "price.quoteType"),
         topHoldings: _get(quoteSummary, "topHoldings"),
+        price: _get(quoteSummary, "price.postMarketPrice"),
       };
 
       setStocks([...stocks, newStockEntry]);

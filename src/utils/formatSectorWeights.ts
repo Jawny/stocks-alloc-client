@@ -5,18 +5,19 @@ const organizeSectorWeights = (
   stock: IStock,
   organizedSectorWeights: Record<string, Array<number>>
 ): void => {
-  const { topHoldings } = stock;
+  const { topHoldings, price, shares } = stock;
   const sectorWeightings = _get(topHoldings, "sectorWeightings");
 
   for (const sector of sectorWeightings) {
     // Sector Object will only ever have 1 key value pair
-    const sectorKey = Object.keys(sector);
-    const sectorValue = Object.values(sector);
-    const currentSectorWeights = _get(organizedSectorWeights, sectorKey) || [];
+    const sectorKey: string[] = Object.keys(sector);
+    const sectorValue: number[] = Object.values(sector);
+    const currentSectorWeights: number[] =
+      _get(organizedSectorWeights, sectorKey) || [];
 
     _set(organizedSectorWeights, sectorKey, [
       ...currentSectorWeights,
-      sectorValue[0],
+      sectorValue[0] * price * shares,
     ]);
   }
 };
@@ -32,7 +33,7 @@ const formatSectorWeights = (stocks: Array<IStock>) => {
       organizeSectorWeights(stock, organizedSectorWeights);
     }
   });
-
+  debugger;
   _forOwn(organizedSectorWeights, (value: Array<number>, key: string) => {
     for (const weight of value) {
     }

@@ -11,7 +11,7 @@ const StockPickerForm = () => {
   const { stocks, setStocks } = React.useContext(StocksContext);
   const [loading, setLoading] = React.useState(false);
 
-  const initialValues = { shares: 0 };
+  const initialValues = { shares: 1 };
   /**
    * Makes api call to get price and topHoldings for a stock.
    * Then add the stock to Stocks state.
@@ -82,7 +82,7 @@ const StockPickerForm = () => {
           },
         ]}
       >
-        <InputNumber min={0} />
+        <InputNumber min={1} />
       </Form.Item>
       <Form.Item className="stock-picker-form-submit">
         <Button type="primary" htmlType="submit" disabled={loading}>

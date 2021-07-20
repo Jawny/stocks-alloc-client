@@ -23,20 +23,43 @@ const organizeSectorWeights = (
 };
 
 const formatSectorWeights = (stocks: Array<IStock>) => {
-  const organizedSectorWeights = {};
+  const organizedSectorWeights: Record<string, number[]> = {};
+  const investmentSumOfSectorWeights: Record<string, number> = {};
+  const sectorWeightsCalculated: Record<string, number> = {};
+  let totalInvestmentValue: number = 0;
 
   stocks.forEach((stock) => {
-    const { quoteType, shares } = stock;
+    const { quoteType, price, shares } = stock;
+    totalInvestmentValue += price * shares;
 
     if (quoteType === "EQUITY") {
     } else {
       organizeSectorWeights(stock, organizedSectorWeights);
     }
   });
-  debugger;
+
+  /* Iterate through each array in organizedSectorWeights and get the total sum 
+     invested in each sector. */
   _forOwn(organizedSectorWeights, (value: Array<number>, key: string) => {
     for (const weight of value) {
+      investmentSumOfSectorWeights[key]
+        ? (investmentSumOfSectorWeights[key] += weight)
+        : (investmentSumOfSectorWeights[key] = weight);
     }
+  });
+
+  /* Calculate % weight in each sector based on amount of money invested */
+  Object.keys(investmentSumOfSectorWeights).forEach((sector: string) => {
+    const investmentInSector: number = _get(
+      investmentSumOfSectorWeights,
+      sector
+    );
+
+    _set(
+      sectorWeightsCalculated,
+      sector,
+      (investmentInSector / totalInvestmentValue) * 100
+    );
   });
 };
 

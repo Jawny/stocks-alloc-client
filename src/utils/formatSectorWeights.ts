@@ -1,6 +1,15 @@
 import { get as _get, set as _set, forOwn as _forOwn } from "lodash";
 import { IStock } from "@contexts/types";
 
+/**
+ * Break down each ETF's top holdings and calculate the % capital invested in
+ * each sector based on the sector weight * current ETF price * number of shares
+ * @function
+ * @name organizeSectorWeights
+ * @param {IStock} stock - stock
+ * @param {Record<string, Array<number>>} organizedSectorWeights - Empty Object to populate
+ * @returns {void} - Will populate organizedSectorWeights with Arrays of sector weights
+ */
 const organizeSectorWeights = (
   stock: IStock,
   organizedSectorWeights: Record<string, Array<number>>
@@ -22,6 +31,14 @@ const organizeSectorWeights = (
   }
 };
 
+/**
+ * Format sector weights from array of stocks. Take each stock and break down the
+ * price to sector weight ratio to get the % weight of capital invested in each sector.
+ * @function
+ * @name formatSectorWeights
+ * @param {Array<IStock>} stocks - request parameters
+ * @returns {Record<string, number>} - Object with sector weight ratios based on current stock prices
+ */
 const formatSectorWeights = (stocks: Array<IStock>) => {
   const organizedSectorWeights: Record<string, number[]> = {};
   const investmentSumOfSectorWeights: Record<string, number> = {};

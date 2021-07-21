@@ -37,9 +37,11 @@ const StocksDisplay = () => {
    */
   const handleDelete = (stock: IDataSourceProps) => {
     setStocks(
-      produce(stocks, (draft) => {
-        delete draft[stock.key];
-      })
+      _compact(
+        produce(stocks, (draft) => {
+          delete draft[stock.key];
+        })
+      )
     );
   };
 

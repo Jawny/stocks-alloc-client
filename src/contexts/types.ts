@@ -10,3 +10,8 @@ export interface IStocksContext {
   stocks: Array<IStock>;
   setStocks: React.Dispatch<React.SetStateAction<IStock[]>>;
 }
+
+export interface IStockWeightsContext {
+  stockWeights: Record<string, number>;
+  setStockWeights: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+}

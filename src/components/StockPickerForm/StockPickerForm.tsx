@@ -3,12 +3,13 @@ import { Input, Form, InputNumber, Button, message } from "antd";
 import { get as _get } from "lodash";
 import { getQuoteSummary } from "@api";
 import { Spinner } from "@components/Spinner";
-import { StocksContext } from "@contexts";
+import { StocksContext, StockWeightsContext } from "@contexts";
 import { formatSectorWeights } from "@utils";
 import "./StockPickerForm.scss";
 
 const StockPickerForm = () => {
   const { stocks, setStocks } = React.useContext(StocksContext);
+  const { setStockWeights } = React.useContext(StockWeightsContext);
   const [loading, setLoading] = React.useState(false);
 
   const initialValues = { shares: 1 };
@@ -43,12 +44,9 @@ const StockPickerForm = () => {
     }
   };
 
-  /**
-   * Run formatSectorWeights function to calculate the portfolio sectors weights
-   * @function
-   */
   const handleSubmit = () => {
-    formatSectorWeights(stocks);
+    const sectorWeights = formatSectorWeights(stocks);
+    setStockWeights(sectorWeights);
   };
 
   return (

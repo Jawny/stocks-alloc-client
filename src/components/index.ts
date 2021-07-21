@@ -1,4 +1,5 @@
 import { StocksDisplay } from "./StocksDisplay";
 import { StockPickerForm } from "./StockPickerForm";
+import { ChartsDisplay } from "./ChartsDisplay";
 
-export { StocksDisplay, StockPickerForm };
+export { ChartsDisplay, StocksDisplay, StockPickerForm };

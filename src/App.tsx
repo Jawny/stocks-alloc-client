@@ -1,14 +1,17 @@
 import React from "react";
-import { StockPickerForm, StocksDisplay } from "@components";
-import { StocksProvider } from "@providers";
+import { ChartsDisplay, StockPickerForm, StocksDisplay } from "@components";
+import { StocksProvider, StockWeightsProvider } from "@providers";
 import "./App.scss";
 
 const App = () => {
   return (
     <div className="App">
       <StocksProvider>
-        <StockPickerForm />
-        <StocksDisplay />
+        <StockWeightsProvider>
+          <StockPickerForm />
+          <StocksDisplay />
+          <ChartsDisplay />
+        </StockWeightsProvider>
       </StocksProvider>
     </div>
   );

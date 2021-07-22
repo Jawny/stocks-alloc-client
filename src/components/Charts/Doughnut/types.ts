@@ -1,4 +1,5 @@
 export interface IDoughnutProps {
+  className?: string;
   data:
     | {
         labels: string[];

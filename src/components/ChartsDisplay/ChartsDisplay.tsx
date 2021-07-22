@@ -2,6 +2,7 @@ import React from "react";
 import { isEmpty as _isEmpty } from "lodash";
 import { StockWeightsContext } from "@contexts";
 import { DoughnutChart } from "@components/Charts";
+import "./ChartsDisplay.scss";
 
 const ChartsDisplay = () => {
   const { stockWeights } = React.useContext(StockWeightsContext);
@@ -38,7 +39,9 @@ const ChartsDisplay = () => {
     }
   }, [stockWeights]);
 
-  return <DoughnutChart data={chartData} />;
+  return (
+    <DoughnutChart className="stocks-weight-doughnut-chart" data={chartData} />
+  );
 };
 
 export default ChartsDisplay;

@@ -78,6 +78,8 @@ const formatSectorWeights = (stocks: Array<IStock>) => {
       (investmentInSector / totalInvestmentValue) * 100
     );
   });
+
+  return sectorWeightsCalculated;
 };
 
 export default formatSectorWeights;

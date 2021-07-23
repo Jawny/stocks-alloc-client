@@ -4,18 +4,23 @@ import { StockWeightsContext } from "@contexts";
 import { DoughnutChart } from "@components/Charts";
 import "./ChartsDisplay.scss";
 
+interface IChartData {
+  labels: string[];
+  datasets: { label: string; data: number[]; backgroundColor: string[] }[];
+}
+
 const ChartsDisplay = () => {
   const { stockWeights } = React.useContext(StockWeightsContext);
   const [chartData, setChartData] = React.useState({});
 
   React.useEffect(() => {
     if (!_isEmpty(stockWeights)) {
-      const labels = Object.keys(stockWeights);
-      const data = Object.keys(stockWeights).map(
+      const labels: string[] = Object.keys(stockWeights);
+      const data: number[] = Object.keys(stockWeights).map(
         (sector) => stockWeights[sector]
       );
-      const title = "Portfolio Sector Distribution";
-      const backgroundColor = [
+      const title: string = "Portfolio Sector Distribution";
+      const backgroundColor: string[] = [
         "rgba(226, 176, 255, 1)",
         "rgba(255, 242, 167, 1)",
         "rgba(255, 169, 208, 1)",
@@ -30,7 +35,7 @@ const ChartsDisplay = () => {
         "rgba(117, 99, 115, 1)",
         "rgba(34, 139, 34, 1)",
       ];
-      const newChartData = {
+      const newChartData: IChartData = {
         labels,
         datasets: [{ label: title, data, backgroundColor }],
       };

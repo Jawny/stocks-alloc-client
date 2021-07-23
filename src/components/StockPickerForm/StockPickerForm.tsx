@@ -45,7 +45,7 @@ const StockPickerForm = () => {
   };
 
   const handleSubmit = () => {
-    const sectorWeights = formatSectorWeights(stocks);
+    const sectorWeights: Record<string, number> = formatSectorWeights(stocks);
     setStockWeights(sectorWeights);
   };
 

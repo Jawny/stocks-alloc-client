@@ -55,7 +55,7 @@ const StocksDisplay = () => {
      * @function
      * @returns {Record<string, number | string>[]}
      */
-    const formattedStocksData = _compact(
+    const formattedStocksData: Record<string, number | string>[] = _compact(
       stocks.map((stock, index) => {
         const ticker = _get(stock, "ticker");
         const shares = _get(stock, "shares");

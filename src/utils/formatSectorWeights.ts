@@ -15,7 +15,10 @@ const organizeSectorWeights = (
   organizedSectorWeights: Record<string, Array<number>>
 ): void => {
   const { topHoldings, price, shares } = stock;
-  const sectorWeightings = _get(topHoldings, "sectorWeightings");
+  const sectorWeightings: Record<string, number>[] = _get(
+    topHoldings,
+    "sectorWeightings"
+  );
 
   for (const sector of sectorWeightings) {
     // Sector Object will only ever have 1 key value pair
